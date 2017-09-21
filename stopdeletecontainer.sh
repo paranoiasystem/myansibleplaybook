@@ -3,7 +3,6 @@
 result=$( docker ps | grep $1 | grep -o "^[0-9a-z]*" )
 
 if [[ -n "$result" ]]; then
-  echo "Container run, now stop it"
   docker stop $result
   docker rm $result
 fi
