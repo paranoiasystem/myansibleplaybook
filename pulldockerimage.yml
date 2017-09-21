@@ -6,3 +6,6 @@
   tasks:
     - name: login to docker registry
       command: docker login {{ registry_url }} -u="{{ docker_user }}" -p="{{ docker_pass }}"
+      
+    - name: pull image on slave
+      command: docker pull {{ registry_url }}/{{ docker_image }}
