@@ -8,10 +8,10 @@
       command: docker login {{ registry_url }} -u="{{ docker_user }}" -p="{{ docker_pass }}"
       
     - name: stop and delete container
-      script: ./stopdeletecontainer.sh {{ docker_image }}
+      script: ./stopdeletecontainer.sh {{ registry_url }}/{{ docker_image }}
       
     - name: delete old image
-      script: ./deletedockerimage.sh {{ docker_image }}
+      script: ./deletedockerimage.sh {{ registry_url }}/{{ docker_image }}
       
     - name: pull image on slave
       command: docker pull {{ registry_url }}/{{ docker_image }}
