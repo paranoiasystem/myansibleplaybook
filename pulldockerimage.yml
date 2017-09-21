@@ -3,16 +3,6 @@
   remote_user: '{{ user_host }}'
   sudo: yes
   hosts: '{{ target }}'
-  environment:
-    PYTHONPATH: "{{ lookup('env','PYTHONPATH') }}:/usr/local/lib/python2.7/dist-packages:/usr/local/lib/python2.7/site-packages"
   tasks:
     - name: login to docker registry
-      docker_login:
-        registry: '{{ registry_url }}'
-        username: '{{ docker_user }}'
-        password: '{{ docker_pass }}'
-        reauthorize: yes
-
-    - name: pull from registry
-      docker_image:
-        name: "{{ registry_url }}/{{ docker_image }}"
+      command: docker login {{ registry_url }} -u="{{ docker_user }}" -p="{{ docker_pass }}"
