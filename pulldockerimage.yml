@@ -13,4 +13,4 @@
 
     - name: pull from registry
       docker_image:
-        name: '{{ registry_url }}'/'{{ docker_image }}'
+        name: {{ registry_url }}/{{ docker_image }}
