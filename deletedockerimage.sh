@@ -3,4 +3,10 @@
 name="${1}"
 
 ids=$(docker images | grep "^$name" | awk '{print $3}')
-[[ -n $ids ]] && docker rmi -f $ids
+
+if [[ -n "$ids" ]]; then
+  echo "Image exist, now erase it"
+  docker rmi -f $ids
+fi
+
+echo "Script end!"
