@@ -3,15 +3,6 @@
   remote_user: '{{ user_host }}'
   sudo: yes
   hosts: '{{ target }}'
-  tasks:
-    - name: run docker imaege
-      command: docker login {{ registry_url }} -u="{{ docker_user }}" -p="{{ docker_pass }}"
-      
-    - name: stop and delete container
-      script: ./stopdeletecontainer.sh {{ registry_url }}/{{ docker_image }}
-      
-    - name: delete old image
-      script: ./deletedockerimage.sh {{ registry_url }}/{{ docker_image }}
-      
+  tasks:      
     - name: pull image on slave
-      command: docker pull {{ registry_url }}/{{ docker_image }}
+      command: docker run -d -p 80:8080 {{ registry_url }}/{{ docker_image }}
